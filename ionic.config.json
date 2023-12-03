@@ -1,0 +1,7 @@
+{
+  "name": "registro-alimentacion-front",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
