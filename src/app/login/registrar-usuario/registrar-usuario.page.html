@@ -1,0 +1,320 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-icon
+      name="close"
+      slot="start"
+      size="large"
+      (click)="salir()"
+    ></ion-icon>
+    <ion-title><strong>Registrarse</strong></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle
+        >Recuerde llenar todos los campos para poder
+        registrarse</ion-card-subtitle
+      >
+    </ion-card-header>
+    <form novalidate [formGroup]="form" (ngSubmit)="crearUsuario($event)">
+      <ion-card-content>
+        <ion-item-divider>
+          <ion-label><strong>Datos Personales</strong></ion-label>
+        </ion-item-divider>
+        <ion-list lines="none">
+          <ion-item>
+            <ion-input
+              label="Ingrese su nombre"
+              labelPlacement="floating"
+              type="text"
+              formControlName="nombres"
+            ></ion-input>
+          </ion-item>
+          <div *ngIf="form.controls['nombres'].touched">
+            <ion-text
+              color="danger"
+              *ngIf="form.controls['nombres'].hasError('required')"
+            >
+              <small>Campo requerido</small>
+            </ion-text>
+          </div>
+          <ion-item>
+            <ion-input
+              label="Ingrese su apellido"
+              labelPlacement="floating"
+              type="text"
+              formControlName="apellidos"
+            ></ion-input>
+          </ion-item>
+          <div *ngIf="form.controls['apellidos'].touched">
+            <ion-text
+              color="danger"
+              *ngIf="form.controls['apellidos'].hasError('required')"
+            >
+              <small>Campo requerido</small>
+            </ion-text>
+          </div>
+          <ion-item>
+            <ion-input
+              label="Ingrese su correo"
+              labelPlacement="floating"
+              type="email"
+              formControlName="email"
+            ></ion-input>
+          </ion-item>
+          <div *ngIf="form.controls['email'].touched">
+            <ion-text
+              color="danger"
+              *ngIf="form.controls['email'].hasError('required')"
+            >
+              <small>Campo requerido</small>
+            </ion-text>
+            <ion-text
+              color="danger"
+              *ngIf="form.controls['email'].hasError('email')"
+            >
+              <small>Email inválido</small>
+            </ion-text>
+          </div>
+          <ion-item>
+            <ion-select
+              label="Seleccione tipo de identificación"
+              label-placement="floating"
+              formControlName="tipo_identificacion"
+            >
+              <ion-select-option value="1">CC</ion-select-option>
+              <ion-select-option value="2">CE</ion-select-option>
+              <ion-select-option value="3">TI</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <div *ngIf="form.controls['tipo_identificacion'].touched">
+            <ion-text
+              color="danger"
+              *ngIf="form.controls['tipo_identificacion'].hasError('required')"
+            >
+              <small>Campo requerido</small>
+            </ion-text>
+          </div>
+          <ion-item>
+            <ion-input
+              label="Ingrese su documento"
+              labelPlacement="floating"
+              type="number"
+              formControlName="numero_identificacion"
+            ></ion-input>
+          </ion-item>
+          <div *ngIf="form.controls['numero_identificacion'].touched">
+            <ion-text
+              color="danger"
+              *ngIf="form.controls['numero_identificacion'].hasError('required')"
+            >
+              <small>Campo requerido</small>
+            </ion-text>
+            <ion-text
+              color="danger"
+              *ngIf="form.controls['numero_identificacion'].hasError('min')"
+            >
+              <small>El documento debe tener al menos 5 caractéres</small><br />
+            </ion-text>
+          </div>
+          <ion-item>
+            <ion-select
+              label="Seleccione género"
+              label-placement="floating"
+              formControlName="genero"
+            >
+              <ion-select-option value="1">Masculino</ion-select-option>
+              <ion-select-option value="2">Femenino</ion-select-option>
+              <ion-select-option value="3">Otro</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <div *ngIf="form.controls['genero'].touched">
+            <ion-text
+              color="danger"
+              *ngIf="form.controls['genero'].hasError('required')"
+            >
+              <small>Campo requerido</small>
+            </ion-text>
+          </div>
+          <ion-item>
+            <ion-input
+              label="Ingrese su telefono"
+              labelPlacement="floating"
+              type="number"
+              formControlName="telefono"
+            ></ion-input>
+          </ion-item>
+          <div *ngIf="form.controls['telefono'].touched">
+            <ion-text
+              color="danger"
+              *ngIf="form.controls['telefono'].hasError('required')"
+            >
+              <small>Campo requerido</small>
+            </ion-text>
+            <ion-text
+              color="danger"
+              *ngIf="form.controls['telefono'].hasError('min')"
+            >
+              <small>El teléfono debe tener al menos 10 caractéres</small><br />
+            </ion-text>
+          </div>
+          <ion-item>
+            <ion-input
+              label="Ingrese una contraseña"
+              labelPlacement="floating"
+              type="password"
+              formControlName="password"
+            ></ion-input>
+          </ion-item>
+          <div *ngIf="form.controls['password'].touched">
+            <ion-text
+              color="danger"
+              *ngIf="form.controls['password'].hasError('required')"
+            >
+              <small>Campo requerido</small><br />
+            </ion-text>
+            <ion-text
+              color="danger"
+              *ngIf="form.controls['password'].hasError('has_number')"
+            >
+              <small>La contraseña debe tener al menos un número</small><br />
+            </ion-text>
+            <ion-text
+              color="danger"
+              *ngIf="form.controls['password'].hasError('has_capital_case')"
+            >
+              <small
+                >La contraseña debe tener al menos una letra mayúscula</small
+              ><br />
+            </ion-text>
+            <ion-text
+              color="danger"
+              *ngIf="form.controls['password'].hasError('has_small_case')"
+            >
+              <small
+                >La contraseña debe tener al menos una letra minúscula</small
+              ><br />
+            </ion-text>
+            <ion-text
+              color="danger"
+              *ngIf="form.controls['password'].hasError('has_special_character')"
+            >
+              <small
+                >La contraseña debe tener al menos un caractér especial</small
+              ><br />
+            </ion-text>
+            <ion-text
+              color="danger"
+              *ngIf="form.controls['password'].hasError('minlength')"
+            >
+              <small>La contraseña debe tener al menos 12 caractéres</small
+              ><br />
+            </ion-text>
+          </div>
+          <ion-item>
+            <ion-input
+              label="Confirmar contraseña"
+              labelPlacement="floating"
+              type="password"
+              formControlName="confirmPassword"
+            ></ion-input>
+          </ion-item>
+          <div *ngIf="form.controls['confirmPassword'].touched">
+            <ion-text
+              color="danger"
+              *ngIf="form.controls['confirmPassword'].hasError('required')"
+            >
+              <small>Campo requerido</small><br />
+            </ion-text>
+            <ion-text
+              color="danger"
+              *ngIf="form.controls['confirmPassword'].hasError('NoPassswordMatch')"
+            >
+              <small>Las contraseñas no son iguales</small><br />
+            </ion-text>
+          </div>
+        </ion-list>
+        <ion-item-divider>
+          <ion-label><strong>Locación</strong></ion-label>
+        </ion-item-divider>
+        <div class="container">
+          <ion-item>
+            <ion-input
+              label="Modifique su dirección de ser necesario"
+              labelPlacement="floating"
+              type="text"
+              formControlName="direccion"
+              (ionBlur)="searchAddress($event.target.value)"
+            ></ion-input>
+          </ion-item>
+          <capacitor-google-map #map></capacitor-google-map>
+        </div>
+        <ion-item-divider>
+          <ion-label><strong>identificación</strong></ion-label>
+        </ion-item-divider>
+        <ion-text color="secondary">
+          A continuación debe tomar dos fotos de su documento de identificación,
+          una por el derecho y otra por el reverso del mismo.
+        </ion-text>
+        <ion-row *ngIf="photosDoc.length < 2">
+          <ion-col>
+            <ion-button size="6" expand="block">
+              <ion-icon slot="end" name="camera"></ion-icon>
+              Primera
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button size="6" expand="block">
+              <ion-icon slot="end" name="camera"></ion-icon>
+              Segunda
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-grid>
+          <ion-row>
+            <ion-col *ngFor="let photo of photosDoc" size="6">
+              <img
+                [src]="photo"
+                style="
+                  width: 100%;
+                  height: 300px;
+                  background-size: 100% 100%;
+                  margin-bottom: 10px;
+                "
+              />
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-text color="secondary">
+          Ahora procederá a tomarse una foto de su rostro, sonría.
+        </ion-text>
+        <ion-button *ngIf="!photosRostro" expand="block">
+          <ion-icon slot="end" name="camera"></ion-icon>
+          Foto de rostro
+        </ion-button>
+        <div *ngIf="photosRostro">
+          <img
+            [src]="photosRostro"
+            style="
+              width: 100%;
+              height: 300px;
+              background-size: 100% 100%;
+              margin-bottom: 10px;
+            "
+          />
+        </div>
+      </ion-card-content>
+      <ion-button
+        class="ion-margin-top"
+        type="submit"
+        color="success"
+        expand="block"
+        [disabled]="form.invalid"
+      >
+        <ion-icon slot="start" name="save"></ion-icon> Guardar
+      </ion-button>
+    </form>
+  </ion-card>
+</ion-content>

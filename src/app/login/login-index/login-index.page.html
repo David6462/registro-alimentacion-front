@@ -1,0 +1,98 @@
+<ion-content [fullscreen]="true">
+  <div class="login">
+    <div class="form-container">
+      <img src="./../../../assets/icon/logo.svg" alt="logo" class="logo" />
+      <form
+        class="form"
+        novalidate
+        [formGroup]="loginForm"
+        (ngSubmit)="login(loginForm.value)"
+      >
+        <ion-input
+          class="label"
+          label="Email"
+          labelPlacement="floating"
+          type="email"
+          fill="outline"
+          [clearInput]="true"
+          formControlName="email"
+        ></ion-input>
+        <div
+          *ngIf="loginForm.controls['email'].touched"
+          class="ion-text-center"
+        >
+          <ion-text
+            color="danger"
+            *ngIf="loginForm.controls['email'].hasError('required')"
+          >
+            <small>Campo requerido</small>
+          </ion-text>
+        </div>
+        <div
+          *ngIf="loginForm.controls['email'].touched"
+          class="ion-text-center"
+        >
+          <ion-text
+            color="danger"
+            *ngIf="loginForm.controls['email'].hasError('email')"
+          >
+            <small>Correo inválido</small>
+          </ion-text>
+        </div>
+        <ion-input
+          class="label"
+          label="Password"
+          labelPlacement="floating"
+          type="password"
+          fill="outline"
+          formControlName="password"
+        ></ion-input>
+        <div
+          *ngIf="loginForm.controls['password'].touched"
+          class="ion-text-center"
+        >
+          <ion-text
+            color="danger"
+            *ngIf="loginForm.controls['password'].hasError('required')"
+          >
+            <small>Campo requerido</small>
+          </ion-text>
+        </div>
+        <div
+          *ngIf="loginForm.controls['password'].touched"
+          class="ion-text-center"
+        >
+          <ion-text
+            color="danger"
+            *ngIf="loginForm.controls['password'].hasError('minlength')"
+          >
+            <small>La contraseña debe tener al menos 5 caractéres</small>
+          </ion-text>
+        </div>
+        <ion-button
+          class="primary-button login-button"
+          type="submit"
+          color="success"
+          [disabled]="!loginForm.valid"
+        >
+          <ion-icon
+            slot="end"
+            name="enter-outline"
+            type="submit"
+          ></ion-icon>
+          Entrar
+        </ion-button>
+      </form>
+      <ion-button
+        class="secondary-button signup-button"
+        type="submit"
+        color="primary"
+        fill="outline"
+        (click)="goToRegistro()"
+      >
+        <ion-icon slot="end" name="newspaper-outline"></ion-icon>
+        Registrarse
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

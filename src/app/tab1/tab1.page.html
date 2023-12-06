@@ -1,17 +1,61 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-title> Registro de alimentos </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle
+        >A continuación por favor rellene los campos para hacer el debido
+        registro del alimento</ion-card-subtitle
+      >
+    </ion-card-header>
+    <ion-card-content>
+      <form novalidate [formGroup]="form" (ngSubmit)="crearAlimento(form.value)">
+        <ion-list lines="none">
+          <ion-item>
+            <ion-input
+              label="Alimento consumido"
+              labelPlacement="floating"
+              type="text"
+              formControlName="alimento_consumido"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input
+              label="Cantidad del alimento consumido"
+              labelPlacement="floating"
+              type="number"
+              formControlName="cantidad"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input
+              label="Cantidad de calorías del alimento"
+              labelPlacement="floating"
+              type="number"
+              formControlName="calorias_promedio"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Fecha y hora de consumo</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-datetime formControlName="fecha_hora"></ion-datetime>
+          </ion-item>
+        </ion-list>
+        <ion-button
+          class="ion-margin-top"
+          type="submit"
+          color="success"
+          expand="block"
+          [disabled]="form.invalid"
+        >
+          <ion-icon slot="start" name="save"></ion-icon> Guardar
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
